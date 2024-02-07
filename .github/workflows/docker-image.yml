@@ -30,7 +30,7 @@ jobs:
       env: 
         DOCKER_USER: ${{ secrets.DOCKER_USER }}
         DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
-        NEW_VERSION: ${{ steps.verion.outputs.version }}
+        NEW_VERSION: ${{ steps.version.outputs.version }}
       run: | 
         docker login -u $DOCKER_USER -p $DOCKER_PASS
         echo "New Version $NEW_VERSION !!!!!!!!!"
