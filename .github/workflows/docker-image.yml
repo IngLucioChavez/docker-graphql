@@ -23,9 +23,15 @@ jobs:
         DOCKER_USER: ${{ secrets.DOCKER_USER }}
         DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
       run: | 
-        echo "Iniciando Login"
         docker login -u $DOCKER_USER -p $DOCKER_PASS
-        echo "Fin del Login"
+
+    - name: Construcción de Imagen
+      run: |
+        docker image build -t lukafran/docker-graphql:2.0.0 .
+
+    - name: Subiendo imagen a Docker Hub
+      run: |
+        docker push lukafran/docker-graphql:2.0.0
 
         
 #    - name: Build the Docker image
