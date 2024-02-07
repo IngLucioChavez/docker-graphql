@@ -18,22 +18,33 @@ jobs:
       with:
         fetch-deph: 0
 
+    - name: Git Semantic Version
+      uses: PaulHatch/semantic-version@v4.0.3
+      with: 
+        major_pattern: "major:"
+        minor_pattern: "feat:"
+        format: "${major}.${minor}.${patch}-prerelease${increment}"
+      id: version
+      
     - name: Docker Login
       env: 
         DOCKER_USER: ${{ secrets.DOCKER_USER }}
         DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
+        NEW_VERSION: ${{ steps.verion.outputs.version }}
       run: | 
         docker login -u $DOCKER_USER -p $DOCKER_PASS
+        echo "New Version $NEW_VERSION !!!!!!!!!"
+            
 
-    - name: Construcción de Imagen
-      run: |
-        docker image build -t lukafran/docker-graphql:2.0.0 .
-        docker image build -t lukafran/docker-graphql .
+    # - name: Construcción de Imagen
+    #   run: |
+    #     docker image build -t lukafran/docker-graphql:2.0.0 .
+    #     docker image build -t lukafran/docker-graphql .
 
-    - name: Subiendo imagen a Docker Hub
-      run: |
-        docker push lukafran/docker-graphql:2.0.0
-        docker push lukafran/docker-graphql
+    # - name: Subiendo imagen a Docker Hub
+    #   run: |
+    #     docker push lukafran/docker-graphql:2.0.0
+    #     docker push lukafran/docker-graphql
 
         
 #    - name: Build the Docker image
