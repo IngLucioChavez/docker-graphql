@@ -28,10 +28,12 @@ jobs:
     - name: Construcción de Imagen
       run: |
         docker image build -t lukafran/docker-graphql:2.0.0 .
+        docker image build -t lukafran/docker-graphql .
 
     - name: Subiendo imagen a Docker Hub
       run: |
         docker push lukafran/docker-graphql:2.0.0
+        docker push lukafran/docker-graphql
 
         
 #    - name: Build the Docker image
