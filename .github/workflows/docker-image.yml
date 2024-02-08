@@ -19,18 +19,18 @@ jobs:
         fetch-deph: 0
 
     - name: Git Semantic Version
-      uses: PaulHatch/semantic-version@v5.4.0
+      uses: PaulHatch/semantic-version@v4.0.3
       with: 
         major_pattern: "major:"
         minor_pattern: "feat:"
-        version_format: "${major}.${minor}.${patch}-prerelease${increment}"
-      id: version
+        format: "${major}.${minor}.${patch}-prerelease${increment}"
+      id: verlucho
       
     - name: Docker Login
       env: 
         DOCKER_USER: ${{ secrets.DOCKER_USER }}
         DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
-        NEW_VERSION: ${{ steps.version.outputs.version }}
+        NEW_VERSION: ${{ steps.verlucho.outputs.version }}
       run: | 
         docker login -u $DOCKER_USER -p $DOCKER_PASS
         echo "New Version $NEW_VERSION !!!!!!!!!"
