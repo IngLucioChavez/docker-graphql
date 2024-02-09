@@ -24,6 +24,7 @@ jobs:
         major_pattern: "major:"
         minor_pattern: "feat:"
         format: "${major}.${minor}.${patch}-x${increment}"
+        bump_each_commit: true
       id: verlucho
       
     - name: Docker Login
