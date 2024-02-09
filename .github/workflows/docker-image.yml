@@ -21,8 +21,8 @@ jobs:
     - name: Git Semantic Version
       uses: PaulHatch/semantic-version@v4.0.3
       with: 
-        major_pattern: "major:"
-        minor_pattern: "feat:"
+        major_pattern: "mayor:"
+        minor_pattern: "menor:"
         format: "${major}.${minor}.${patch}"
         bump_each_commit: true
       id: verlucho
